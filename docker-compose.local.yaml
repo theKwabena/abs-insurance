@@ -1,0 +1,38 @@
+﻿services:
+  abs-insurance-api:
+    image: abs-insurance
+    container_name: abs-insurance-api
+    build:
+      context: .
+      dockerfile: abs-insurance/Dockerfile
+    volumes:
+      - .:/src
+    networks:
+      - abs-net
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    dns:
+      - 8.8.8.8
+    depends_on:
+      - abs-database
+    env_file:
+      - .env
+        
+  abs-database:
+    image: postgres:14.3-alpine
+    container_name: abs-db
+    volumes:
+      - abs-data:/var/lib/postgresql/data
+    env_file:
+      - .env
+    networks:
+      - abs-net
+    
+volumes:
+  abs-data:
+    
+networks:
+  abs-net:
+
+      
