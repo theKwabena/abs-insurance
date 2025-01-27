@@ -6,6 +6,9 @@ using Entities.Exceptions;
 
 namespace abs_insurance.Extensions;
 
+/// <summary>
+/// Provides extension methods for configuring application exceptions.
+/// </summary>
 public static class ExceptionMiddlewareExtensions
 {
     public static void ConfigureExceptionHandler(this WebApplication app)

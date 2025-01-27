@@ -16,12 +16,7 @@
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5111",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "SECRET": "ByYM000OLlMQG6VVVp1OH7Xzyr7gHuw1qvUC5dcGt3SNM",
-        "POSTGRES_USER": "elussd",
-        "POSTGRES_PASSWORD": "elussd",
-        "POSTGRES_CONNECTION_STRING": "Host=172.23.0.2;Port=5432;Database=abs-insure;Username=elussd;Password=elussd",
-        "ADMIN_CREATION_TOKEN": "weareGood"
+        "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
     "https": {

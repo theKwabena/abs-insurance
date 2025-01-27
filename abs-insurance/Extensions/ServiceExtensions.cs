@@ -16,8 +16,15 @@ using Entities.Models;
 
 namespace abs_insurance.Extensions;
 
+/// <summary>
+/// Provides extension methods for configuring application services.
+/// </summary>
 public static class ServiceExtensions
 {
+    /// <summary>
+    /// Configures Cross-Origin Resource Sharing (CORS) policy for the application.
+    /// </summary>
+    /// <param name="services">The service collection to configure.</param>
     public static void ConfigureCors(this IServiceCollection services) =>
         services.AddCors(options =>
         {
@@ -29,12 +36,25 @@ public static class ServiceExtensions
             );
         });
     
+    /// <summary>
+    /// Registers the repository manager service in the dependency injection container.
+    /// </summary>
+    /// <param name="services">The service collection to configure.</param>
     public static void ConfigureRepositoryManager(this IServiceCollection services) =>
         services.AddScoped<IRepositoryManager, RepositoryManager>();
 
+    /// <summary>
+    /// Registers the service manager service in the dependency injection container.
+    /// </summary>
+    /// <param name="services">The service collection to configure.</param>
     public static void ConfigureServiceManager(this IServiceCollection services) =>
         services.AddScoped<IServiceManager, ServiceManager>();
     
+    /// <summary>
+    /// Configures the PostgreSQL database context for the application.
+    /// </summary>
+    /// <param name="services">The service collection to configure.</param>
+    /// <param name="configuration">The application configuration.</param>
     public static void ConfigurePostgresContext(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = Environment.GetEnvironmentVariable("POSTGRES_CONNECTION_STRING");
@@ -43,6 +63,10 @@ public static class ServiceExtensions
         ));
     }
 
+    /// <summary>
+    /// Configures the controller services with JSON options to handle reference cycles.
+    /// </summary>
+    /// <param name="services">The service collection to configure.</param>
     public static void ConfigureControllerServices(this IServiceCollection services)
     {
         services.AddControllers()
@@ -52,6 +76,10 @@ public static class ServiceExtensions
             });
     }
     
+    /// <summary>
+    /// Configures identity services, including password requirements and user validation.
+    /// </summary>
+    /// <param name="services">The service collection to configure.</param>
     public static void ConfigureIdentity(this IServiceCollection services)
     {
         var builder = services.AddIdentity<User, IdentityRole>(o =>
@@ -67,6 +95,11 @@ public static class ServiceExtensions
             .AddDefaultTokenProviders();
     }
     
+    /// <summary>
+    /// Configures JWT-based authentication for the application.
+    /// </summary>
+    /// <param name="services">The service collection to configure.</param>
+    /// <param name="configuration">The application configuration.</param>
     public static void ConfigureJwt(this IServiceCollection services, IConfiguration
         configuration)
     {
@@ -93,11 +126,15 @@ public static class ServiceExtensions
             });
     }
 
-
+    /// <summary>
+    /// Configures Swagger documentation for the API.
+    /// </summary>
+    /// <param name="services">The service collection to configure.</param>
     public static void ConfigureSwagger(this IServiceCollection services)
     {
         services.AddSwaggerGen(s =>
         {
+            s.EnableAnnotations();
             s.SwaggerDoc("v1", new OpenApiInfo { Title = "ABS-INSURANCE API", Version = "v1" });
             s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {

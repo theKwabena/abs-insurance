@@ -6,6 +6,9 @@ using Entities.Exceptions;
 
 namespace Services;
 
+/// <summary>
+/// Handles the business logic for policy components.
+/// </summary>
 internal sealed class PolicyComponentService : IPolicyComponentService
 {
     private readonly IRepositoryManager _repository;
