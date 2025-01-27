@@ -49,7 +49,7 @@ POSTGRES_CONNECTION_STRING=YOUR-PG-CONNECTION-STRING
 To run the project using Docker, you need to execute the following command:
 
 ```bash
-docker-compose -f my.yaml up
+docker-compose -f docker-compose.local.yaml up
 ```
 
 This will start the necessary services defined in the `docker-compose` file (`my.yaml`), such as the PostgreSQL database and the application container.

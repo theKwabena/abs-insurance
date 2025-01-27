@@ -21,4 +21,4 @@ jobs:
       - name: 🏗️ Build Project
         run: dotnet build ./abs-insurance/abs-insurance.csproj --no-restore
       - name: ✅ Run Tests
-        run: dotnet test ./TestsAbs/TestsAbs.csproj --no-build --verbosity normal
+        run: dotnet test ./abs-insurance/abs-insurance.csproj --no-build --verbosity normal
