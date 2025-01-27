@@ -1,0 +1,24 @@
+name: Test Project 🚀
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛠️ Checkout Repository
+        uses: actions/checkout@v4
+      - name: ⚙️ Setup .NET 8 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.x
+      - name: 📦 Restore Dependencies
+        run: dotnet restore ./abs-insurance/abs-insurance.csproj
+      - name: 🏗️ Build Project
+        run: dotnet build ./abs-insurance/abs-insurance.csproj --no-restore
+      - name: ✅ Run Tests
+        run: dotnet test ./TestsAbs/TestsAbs.csproj --no-build --verbosity normal
